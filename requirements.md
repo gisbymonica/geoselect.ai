@@ -2,16 +2,24 @@
 
 ## 1. Overview
 
-The Smart Site Selection Geo-Agent is an autonomous AI consultant designed to revolutionize how retail brands identify and evaluate physical store locations. Unlike traditional GIS tools that provide raw data, this agent uses a Reasoning Loop to interpret complex natural language requirements and provide actionable "Go/No-Go" recommendations.
+The Smart Site Selection Geo-Agent is an autonomous AI consultant built to transform retail site selection. Unlike static dashboards or traditional GIS tools that provide raw data, this agent perceives geographic context, reasons through multi-step business goals, and executes data-driven actions to find high-ROI locations. The agent uses a ReAct (Reasoning + Acting) loop to interpret complex natural language requirements and provide actionable "Go/No-Go" recommendations.
+
+### 1.1 Why AI is Needed (Strategic Rationale)
+
+**Nonlinear Complexity**: Modern retail journeys involve fragmented data (demographics, transit, POIs) that rule-based systems cannot correlate in real-time. The agent synthesizes multiple data layers to understand complex spatial relationships.
+
+**Adaptive Intelligence**: AI learns from dynamic signals—like a new transit stop or competitor opening—and adjusts recommendations without manual reprogramming. The system continuously adapts to changing market conditions.
+
+**Reducing Cognitive Load**: Automates the "heavy lifting" of spatial analysis, allowing human teams to focus on strategic final decisions rather than data wrangling and manual correlation.
 
 ## 2. User Stories
 
-### 2.1 Natural Language Query Processing
+### 2.1 Conversational Goal-Setting
 **As a** retail brand manager  
-**I want to** input complex location requirements in natural language  
-**So that** I can quickly find suitable store locations without learning GIS tools
+**I want to** define high-level business objectives in natural language  
+**So that** I can quickly find suitable store locations without learning GIS tools or manual filters
 
-**Example Query**: "Find a high-traffic spot near trendy cafes for a Gen Z clothing brand"
+**Example Query**: "Find a site to maximize Gen Z reach in Mumbai" or "Find a high-traffic spot near trendy cafes for a Gen Z clothing brand"
 
 ### 2.2 Geospatial Data Analysis
 **As a** site selection analyst  
@@ -52,6 +60,7 @@ The Smart Site Selection Geo-Agent is an autonomous AI consultant designed to re
 - [ ] 3.2.3 The system must process foot traffic heatmap data
 - [ ] 3.2.4 The system must overlay multiple data layers for comprehensive analysis
 - [ ] 3.2.5 All geospatial data must be sourced from verified datasets (Overture Maps, OpenStreetMap)
+- [ ] 3.2.6 **Context-Aware Filtering**: The system must evaluate foot traffic and demographics relative to the specific brand "vibe" (e.g., luxury vs. budget, trendy vs. traditional)
 
 ### 3.3 Real Estate Scraping
 - [ ] 3.3.1 The system must interface with property listing APIs to retrieve available commercial spaces
@@ -96,6 +105,14 @@ The Smart Site Selection Geo-Agent is an autonomous AI consultant designed to re
 - [ ] 3.9.2 Citations must include data source, metric name, and value (e.g., "High Gen Z density in H3 Cell #8912: 45% of population aged 18-24")
 - [ ] 3.9.3 The reasoning process must be transparent and auditable
 - [ ] 3.9.4 Users must be able to drill down into the data behind each recommendation
+- [ ] 3.9.5 **Reasoning Log**: The system must provide a detailed "Reasoning Log" for every decision to ensure human oversight and transparency
+
+### 3.10 Responsible Design & Ethics
+- [ ] 3.10.1 **Bias Mitigation**: The system must implement guardrails to ensure site selection does not inadvertently reinforce historical socioeconomic biases
+- [ ] 3.10.2 **Fairness Auditing**: The system must log demographic patterns in recommendations to enable periodic bias audits
+- [ ] 3.10.3 **Data Privacy**: Anonymized foot traffic and proprietary brand data must remain encrypted and isolated
+- [ ] 3.10.4 **GDPR Compliance**: All personal data handling must comply with GDPR and relevant data protection regulations
+- [ ] 3.10.5 **Transparency**: Users must be informed when AI-generated recommendations are based on incomplete or uncertain data
 
 ## 4. Out of Scope
 
