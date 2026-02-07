@@ -56,35 +56,38 @@ Knowledge Base integration ensures recommendations comply with local zoning and 
 
 ### AWS-Native Agentic Stack
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Web UI (React + Mapbox)                   │
-│              (Natural Language Query Input)                  │
-└───────────────────────────┬─────────────────────────────────┘
-                            │
-                    Amazon API Gateway
-                            │
-┌───────────────────────────▼─────────────────────────────────┐
-│              Amazon Bedrock Agents (Orchestrator)            │
-│         Anthropic Claude 3.5 Sonnet (Reasoning Brain)       │
-│           ReAct Loop (Reasoning + Acting + Reflection)      │
-└───────────────────────────┬─────────────────────────────────┘
-                            │
-        ┌───────────────────┼───────────────────┐
-        │                   │                   │
-┌───────▼────────┐  ┌──────▼──────┐  ┌────────▼────────┐
-│ DemographicTool│  │SearchTool   │  │SpatialAnalysis  │
-│ (Lambda)       │  │(Lambda)     │  │Tool (Lambda)    │
-└───────┬────────┘  └──────┬──────┘  └────────┬────────┘
-        │                   │                   │
-        └───────────────────┼───────────────────┘
-                            │
-        ┌───────────────────┼───────────────────┐
-        │                   │                   │
-┌───────▼────────┐  ┌──────▼──────┐  ┌────────▼────────┐
-│ Amazon RDS     │  │External APIs│  │  Amazon S3      │
-│ (PostGIS)      │  │(Listings)   │  │(Knowledge Base) │
-└────────────────┘  └─────────────┘  └─────────────────┘
+```mermaid
+graph TD
+    A["🌐 Web UI<br/>React + Mapbox<br/>Natural Language Query"] -->|HTTPS| B["🔗 Amazon API Gateway<br/>Authentication & Routing"]
+    
+    B -->|Invoke| C["🤖 Amazon Bedrock Agents<br/>Orchestrator<br/>Claude 3.5 Sonnet<br/>ReAct Loop"]
+    
+    C -->|Execute Action| D1["📊 Demographic Tool<br/>Lambda Function<br/>Population & Income Analysis"]
+    C -->|Execute Action| D2["🔍 Search Tool<br/>Lambda Function<br/>POI & Listing Discovery"]
+    C -->|Execute Action| D3["📍 Spatial Analysis Tool<br/>Lambda Function<br/>H3 Hexagonal Indexing"]
+    C -->|Execute Action| D4["💭 SWOT Analyzer<br/>Lambda Function<br/>Strengths & Opportunities"]
+    
+    C -.->|Store KB| E["📚 Amazon Bedrock<br/>Knowledge Base<br/>City Plans & Regulations<br/>S3-backed"]
+    
+    D1 & D2 & D3 & D4 -->|Query| F1["🗄️ Amazon RDS<br/>PostGIS Database<br/>Spatial Queries"]
+    D1 & D2 & D3 & D4 -->|API Calls| F2["🌍 External APIs<br/>Transit, Events<br/>Real-time Feeds"]
+    D1 & D2 & D3 & D4 -->|Cache| F3["⚡ ElastiCache<br/>Redis<br/>Performance Layer"]
+    
+    F1 -.->|Observe| G["📈 CloudWatch &<br/>X-Ray<br/>Monitoring & Tracing"]
+    F2 -.->|Log Events| G
+    
+    style A fill:#ff9800
+    style B fill:#2196f3
+    style C fill:#4caf50
+    style D1 fill:#9c27b0
+    style D2 fill:#9c27b0
+    style D3 fill:#9c27b0
+    style D4 fill:#9c27b0
+    style E fill:#ffc107
+    style F1 fill:#00bcd4
+    style F2 fill:#00bcd4
+    style F3 fill:#00bcd4
+    style G fill:#607d8b
 ```
 
 ### Core Components
